@@ -12,7 +12,7 @@
 <br />
 <div align="center">
   <a href="https://github.com/dvdimitrov13/Logo_Detection">
-    <img src="images/logo.png" alt="Logo" width="400" height="400">
+    <img src="images/logo.png" alt="Logo" width="200" height="200">
   </a>
 
   <h1 align="center">Logo Detection</h1>
