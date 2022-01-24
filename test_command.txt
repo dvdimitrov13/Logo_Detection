@@ -1,3 +1,1 @@
-python3 detect.py --weights /home/dimitar/Desktop/yolo/runs/train/exp14/weights/last.pt --source /home/dimitar/Desktop/yolo/raw_data/to_test --conf-thres 0.25 --iou-thres 0.45 --agnostic-nms --augment --project /home/dimitar/Desktop/yolo/runs/detect --name output_exp14 --save-txt --save-conf
-
-python detect.py --weights /home/dimitar/Desktop/yolo/runs/train/yolo500_stl/weights/best.pt --source /home/dimitar/Desktop/yolo/formatted_data/yolo500/valid/images --conf-thres 0.10 --iou-thres 0.45 --agnostic-nms --augment --project /home/dimitar/Desktop/yolo/runs/detect --name output_yolo500_stl --save-txt --save-conf
+python detect.py --weights {Path/to/CWD}/yolo/runs/train/{model_name}/weights/best.pt --source {Path/to/CWD}/yolo/formatted_data/{data_name}/valid/images --conf-thres 0.10 --iou-thres 0.45 --agnostic-nms --augment --project {Path/to/CWD}/yolo/runs/detect --name output_{model_name} --save-txt --save-conf
