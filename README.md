@@ -4,10 +4,6 @@
 [![LinkedIn][linkedin-shield]][linkedin-url]
 
 
-
-
-
-
 <!-- PROJECT LOGO -->
 <br />
 <div align="center">
@@ -18,7 +14,7 @@
   <h1 align="center">Logo Detection</h1>
 
   <p align="center">
-   Knowing by who and in what context your product is used is power! By using Computer Vision we can acquire organic customer insights by detecting the right images on social media. This repository showcases models trained to detect 15 distinct brand logos in pictures/videos online!
+   Knowing who is using your product and in what context is power! By using Computer Vision we can acquire organic customer insights by detecting the right images on social media. This repository showcases models trained to detect 15 distinct brand logos in pictures/videos online!
   </p>
 </div>
 
