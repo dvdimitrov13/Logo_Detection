@@ -1,0 +1,4 @@
+python train.py --img 640 --batch {batch_size} --epochs {num_epochs} --data /home/dimitar/yolo/formatted_data/{data_name}/{data_name}.yaml --weights {model_weights} --cache {cache_in_ram} --name {data_name}_{model} --project /home/dimitar/Desktop/yolo/runs/train 
+
+python train.py --img 640 --batch 8 --epochs 50 --data /home/dimitar/yolo/formatted_data/{data_name}/{data_name}.yaml --weights yolov5s.pt --cache --name yolo500_stl --project /home/dimitar/Desktop/yolo/runs/train --hyp data/hyps/hyp.finetune.yaml
+

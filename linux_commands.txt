@@ -1,0 +1,4 @@
+1st - mkdir data_sample_1000_2
+2nd - cd main dir with all the files
+3rd - ls -1 | head -8000| xargs -i mv "{}" ~/Desktop/yolo/raw_data/data_sample_1000_2
+
