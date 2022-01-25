@@ -18,18 +18,16 @@
   </p>
 </div>
 
-
-
 <!-- TABLE OF CONTENTS -->
 ## Table of Contents
 <details>
   <ol>
     <li>
-      <a href="#about-the-project">The models</a>
+      <a href="#about-the-project">About the project</a>
       <ul>
-        <li><a href="#built-with">Environment</a></li>
-        <li><a href="#built-with">Development</a></li>
-        <li><a href="#built-with">Results</a></li>
+        <li><a href="#environment">Environment</a></li>
+        <li><a href="#development">Development</a></li>
+        <li><a href="#results">Results</a></li>
       </ul>
     </li>
     <li>
@@ -50,49 +48,66 @@
 
 
 <!-- ABOUT THE PROJECT -->
-## About The Project
+## About the project
 
-[![Product Name Screen Shot][product-screenshot]](https://example.com)
+This project was developed as part of my Data Science degree coursework, the goal was to maximize the accuracy. After a brief experimentation with ResNet50, [YOLOv5](https://github.com/ultralytics/yolov5/blob/master/README.md) was identified as the best performing model for the job. Additionally, thanks to it's state of the art architecture I was able to develop two distinct models one can choose to implement:
+* yolo1000_s_cust - based on YOLOv5_s architecture 
+* yolo1000_x - based on YOLOv5_x architecture
 
-There are many great README templates available on GitHub; however, I didn't find one that really suited my needs so I created this enhanced one. I want to create a README template so amazing that it'll be the last one you ever need -- I think this is it.
+The different architectures allow the user a tradeoff between speed and accuracy. Here is a more detailed comparison between the two architectures (statistics based on [pretrained checkpoints](https://github.com/ultralytics/yolov5/blob/master/README.md)):
 
-Here's why:
-* Your time should be focused on creating something amazing. A project that solves a problem and helps others
-* You shouldn't be doing the same tasks over and over like creating a README from scratch
-* You should implement DRY principles to the rest of your life :smile:
-
-Of course, no one template will serve all projects since your needs may be different. So I'll be adding more in the near future. You may also suggest changes by forking this repo and creating a pull request or opening an issue. Thanks to all the people have contributed to expanding this template!
-
-Use the `BLANK_README.md` to get started.
+|Model |size<br><sup>(pixels) |mAP<sup>val<br>0.5:0.95 |mAP<sup>val<br>0.5 |Speed<br><sup>CPU b1<br>(ms) |Speed<br><sup>V100 b1<br>(ms) |Speed<br><sup>V100 b32<br>(ms) |params<br><sup>(M) |FLOPs<br><sup>@640 (B)
+|---                    |---  |---    |---    |---    |---    |---    |---    |---
+|YOLOv5s      			|640  |37.2   |56.0   |98     |6.4    |0.9    |7.2    |16.5
+|YOLOv5x      			|640  |50.7   |68.9   |766    |12.1   |4.8    |86.7   |205.7
 
 <p align="right">(<a href="#top">back to top</a>)</p>
 
 
+<a name="env"></a>
 
-### Built With
+### Environment
+The main model development enironment was an Azure instance with an NVIDIA K80 with 12 GB of vram. Additionally, I used Google Collab with GPU acceleration enabled in order to test different hyperparameter configurations. 
 
-This section should list any major frameworks/libraries used to bootstrap your project. Leave any add-ons/plugins for the acknowledgements section. Here are a few examples.
+Finally, in order to make the reproducebility and improvement of this repository as straightforward as possible I used Git Large File Storage, allowing for a simple cloning that includes all relevant training data as well as model weights.
 
-* [Next.js](https://nextjs.org/)
-* [React.js](https://reactjs.org/)
-* [Vue.js](https://vuejs.org/)
-* [Angular](https://angular.io/)
-* [Svelte](https://svelte.dev/)
-* [Laravel](https://laravel.com)
-* [Bootstrap](https://getbootstrap.com)
-* [JQuery](https://jquery.com)
+<div align="center" style="position:relative;">
+    <a href="https://colab.research.google.com/github/ultralytics/yolov5/blob/master/tutorial.ipynb">
+        <img src="https://github.com/ultralytics/yolov5/releases/download/v1.0/logo-colab-small.png" width="60" height="60"/>
+    </a>
+    </a>
+    <a href="https://git-lfs.github.com/">
+        <img src="https://github.com/dvdimitrov13/Logo_Detection/blob/master/images/git_lfs.png" width="60" height="60"/>
+    </a>
+    <a href="https://www.googleadservices.com/pagead/aclk?sa=L&ai=DChcSEwiS0f6Bt7j0AhWRzXcKHXXkA0gYABAAGgJlZg&ae=2&ohost=www.google.com&cid=CAESQOD2WXDDC3bcaN6__E7gY08J137qyTW6nOQb8DRsJPfVaCbKW_MnwwecmS8dCR7oZPQSLYd6V8LfB32ZLnpJUqA&sig=AOD64_2JGNrArPWvbnOJLMOXwqSsXl1gSw&q&adurl&ved=2ahUKEwjrovWBt7j0AhW3gv0HHXPGCYYQ0Qx6BAgCEAE&dct=1">
+        <img src="https://aspiracloud.com/wp-content/uploads/2019/07/azure.png" width="60" height="60"/>
+    </a>
+    <a href="https://pytorch.org">
+        <img src="https://user-images.githubusercontent.com/74457464/143897946-feabe8ec-ac91-4d38-a8e0-f1db1db3d84b.png" width="25%" height="60"/>
+    </a>
+ 
+</div>
 
 <p align="right">(<a href="#top">back to top</a>)</p>
 
 
+<!-- DEVELOPMENT -->
+### Development
 
-<!-- GETTING STARTED -->
-## Getting Started
+#### 1. Dataset
+The raw dataset provided 17 Brand Logos, after initial inspection Intimissimi and Ralph Lauren were dropped due to large amount of mislabeled data. This left me with 15 Logos:  Adidas, Apple Inc., Chanel, Coca-Cola, Emirates, Hard Rock Cafe, Mercedes-Benz, NFL, Nike, Pepsi, Puma, Starbucks, The North Face, Toyota, Under Armour.
 
-This is an example of how you may give instructions on setting up your project locally.
-To get a local copy up and running follow these simple example steps.
+In order to convert the dataset to YOLOv5 PyTorch TXT Format I used  [Roboflow](https://roboflow.com/). As far as preprocessing I applied auto-orient and image resize (to the correct model size 640x640). Through testing I found that data augmentation in Roboflow hurt model accuracy since the YOLOv5 training script already implements data augmentation which can be finutuned using hyperparameters.
 
-### Prerequisites
+Finally, I found that a balanced dataset improved training accuracy, therefore I opted to sample a maximum of 1000 iages per class and further reduce the data to 10000 images for easier annotation. The final dataset named [yolo1000](https://github.com/dvdimitrov13/Logo_Detection/tree/master/formatted_data/yolo1000) has the following statistics:
+
+ <div align="center">
+    <a href="https://roboflow.com/?ref=ultralytics">
+        <img src="https://github.com/dvdimitrov13/Logo_Detection/blob/master/images/descriptive_stats.png" />
+    </a>
+</div>
+ 
+### Results
 
 This is an example of how to list things you need to use the software and how to install them.
 * npm
