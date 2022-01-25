@@ -83,7 +83,7 @@ Finally, in order to make the reproducebility and improvement of this repository
         <img src="https://aspiracloud.com/wp-content/uploads/2019/07/azure.png" width="60" height="60"/>
     </a>
     <a href="https://pytorch.org">
-        <img src="https://user-images.githubusercontent.com/74457464/143897946-feabe8ec-ac91-4d38-a8e0-f1db1db3d84b.png" width="25%" height="60"/>
+        <img src="https://user-images.githubusercontent.com/74457464/143897946-feabe8ec-ac91-4d38-a8e0-f1db1db3d84b.png" width="20%" height="45"/>
     </a>
  
 </div>
