@@ -31,14 +31,13 @@
       </ul>
     </li>
     <li>
-      <a href="#getting-started">Review and improve</a>
+      <a href="#user-manual">User manual</a>
       <ul>
-        <li><a href="#prerequisites">Installation</a></li>
-        <li><a href="#installation">Training</a></li>
-        <li><a href="#installation">Evaluation</a></li>
+        <li><a href="#installation">Installation</a></li>
+        <li><a href="#training">Training</a></li>
+        <li><a href="#detection-and-evaluation">Detection and evaluation</a></li>
       </ul>
     </li>
-    <li><a href="#contributing">Contributing</a></li>
     <li><a href="#license">License</a></li>
     <li><a href="#contact">Contact</a></li>
     <li><a href="#acknowledgments">Acknowledgments</a></li>
@@ -83,7 +82,7 @@ Finally, in order to make the reproducebility and improvement of this repository
         <img src="https://aspiracloud.com/wp-content/uploads/2019/07/azure.png" width="60" height="60"/>
     </a>
     <a href="https://pytorch.org">
-        <img src="https://user-images.githubusercontent.com/74457464/143897946-feabe8ec-ac91-4d38-a8e0-f1db1db3d84b.png" width="20%" height="45"/>
+        <img src="https://user-images.githubusercontent.com/74457464/143897946-feabe8ec-ac91-4d38-a8e0-f1db1db3d84b.png" width="25%" height="60"/>
     </a>
  
 </div>
@@ -91,69 +90,79 @@ Finally, in order to make the reproducebility and improvement of this repository
 <p align="right">(<a href="#top">back to top</a>)</p>
 
 
-<!-- DEVELOPMENT -->
+<!-- GETTING STARTED -->
 ### Development
 
 #### 1. Dataset
 The raw dataset provided 17 Brand Logos, after initial inspection Intimissimi and Ralph Lauren were dropped due to large amount of mislabeled data. This left me with 15 Logos:  Adidas, Apple Inc., Chanel, Coca-Cola, Emirates, Hard Rock Cafe, Mercedes-Benz, NFL, Nike, Pepsi, Puma, Starbucks, The North Face, Toyota, Under Armour.
 
-In order to convert the dataset to YOLOv5 PyTorch TXT Format I used  [Roboflow](https://roboflow.com/). As far as preprocessing I applied auto-orient and image resize (to the correct model size 640x640). Through testing I found that data augmentation in Roboflow hurt model accuracy since the YOLOv5 training script already implements data augmentation which can be finutuned using hyperparameters.
+In order to convert the dataset to YOLOv5 PyTorch TXT Format I used  [Roboflow](https://roboflow.com/). As far as preprocessing I applied auto-orient and image resize (to the correct model size 640x640). Since YOLOv5 already applies data augmention in its training script which can be finutened through hyperparameters, no data augmentation steps were taken in Roboflow.
 
-Finally, I found that a balanced dataset improved training accuracy, therefore I opted to sample a maximum of 1000 iages per class and further reduce the data to 10000 images for easier annotation. The final dataset named [yolo1000](https://github.com/dvdimitrov13/Logo_Detection/tree/master/formatted_data/yolo1000) has the following statistics:
+After applying additional preprocessing steps descibed in the following section, the final dataset (can be found under the name [yolo1000](https://github.com/dvdimitrov13/Logo_Detection/tree/master/formatted_data/yolo1000)  has the follwoing statistics:
 
  <div align="center">
     <a href="https://roboflow.com/?ref=ultralytics">
-        <img src="https://github.com/dvdimitrov13/Logo_Detection/blob/master/images/descriptive_stats.png" />
+        <img src="https://github.com/dvdimitrov13/Logo_Detection/blob/master/images/descriptive_stats.png" width="35%"/>
     </a>
 </div>
- 
-### Results
 
-This is an example of how to list things you need to use the software and how to install them.
-* npm
-  ```sh
-  npm install npm@latest -g
-  ```
+#### 2. Training 
+For model training transfer learning was used. Instead of starting from randomized set of weights I used the pretrined checkpoints provided by YOLOv5 repo, which are already trained on the COCO dataset.
+
+To establish baseline performance I first trained a model using an unaltered version of the full dataset (around 38K images) using YOLOv5l. Following that I took the following steps to improve performance:
+* Improved label consistency by adding missing bounding boxes, original data had only one box per image
+* Improved label accuracy by resizing bounding boxes with inaccurate position 
+* Balanced the class distribution by including a maximum of 1000 images per class
+* Added 2% background images (218 images) and removed wrong bounding boxes in order to reduce False Positives
+
+By applying those the not only did the performance of the much smaller YOLOv5s model reach the baseline performance but also there was a significant improvement with instances of false positves, example below.
+
+YOLOv5l - baseline         |  YOLOv5s - v1          |
+:-------------------------:|:-------------------------:|
+![](https://github.com/dvdimitrov13/Logo_Detection/blob/master/images/yolo_full_l.jpg)  |  ![](https://github.com/dvdimitrov13/Logo_Detection/blob/master/images/yolov5s.jpg)  |
+
+Finally, through experimentation with hyperparameters the YOLOv5s - v1 was further improved, the following data augmentation steps were applied: HSV -Hue/Saturation/Value, Translation, Scale, Flip (horizontal), Shear, Mosaic and Mixup. 
+
+Both final models - YOLOv5s - v2 and YOLOv5x - final, were trained using those finetuned hyperparameters.
+
+### Results 
+For model evaluation the main metric used was mAP. Additionally, the IoU (Intersection over union) was calculated at  bounding box confidence of 50% in order to exclude "lucky guesses".
+
+ Here the average results for each model: 
+  
+| Model| mAP<sup>val<br>0.5 |mAP<sup>val<br>0.5:0.95  
+| :-----: | :-: | :-: 
+| YOLOv5l - baseline | 0.870 | 0.701
+| YOLOv5s - v1 | 0.868 | 0.693 
+| YOLOv5s - v2 | 0.873 | 0.711
+| YOLOv5x - final | 0.881 | 0.722
+
+We can see that the performance of the two final models is very close, while the speed of the X model is significantly lower, therefore if the user wants absolute optimal performance over a set of images **YOLOv5x - final** shoudl be used, while **YOLOv5s - v2** is better suited for realtime video detection.
+
+Here are the final results for **YOLOv5x - final**:
+| Logo| mAP<sup>val<br>0.5 |mAP<sup>val<br>0.5:0.95 | IoU<br>>50% confidence 
+| :-----: | :-: | :-: | :-: 
+| Adidas 		| 0.837 | 0.713 | 0.924 
+| Apple Inc. 	| 0.936 | 0.764 | 0.928 
+| Chanel 		| 0.830 | 0.644 | 0.844 
+| Coca Cola 	| 0.889 | 0.648 | 0.867 
+| Emirates	 	| 0.786 | 0.688 | 0.919
+| Hard Rock Cafè | 0.953 | 0.813 | 0.930 
+| Mercedes Benz | 0.908 | 0.778 | 0.920 
+| NFL 			| 0.921 | 0.744 | 0.892 
+| Nike 			| 0.781 | 0.630 | 0.908 
+| Pepsi 		| 0.721 | 0.530 | 0.815 
+| Puma 			| 0.869 | 0.679 | 0.887 
+| Starbucks 	| 0.964 | 0.869 | 0.940 
+| The North Face | 0.958 | 0.818 | 0.923 
+| Toyota 		| 0.907 | 0.749 | 0.874 
+| Under Armour 	| 0.963 | 0.771 | 0.909 
+
+## User manual
 
 ### Installation
-
-_Below is an example of how you can instruct your audience on installing and setting up your app. This template doesn't rely on any external dependencies or services._
-
-1. Get a free API Key at [https://example.com](https://example.com)
-2. Clone the repo
-   ```sh
-   git clone https://github.com/your_username_/Project-Name.git
-   ```
-3. Install NPM packages
-   ```sh
-   npm install
-   ```
-4. Enter your API in `config.js`
-   ```js
-   const API_KEY = 'ENTER YOUR API';
-   ```
-
-<p align="right">(<a href="#top">back to top</a>)</p>
-
-
-
-
-<!-- CONTRIBUTING -->
-## Contributing
-
-Contributions are what make the open source community such an amazing place to learn, inspire, and create. Any contributions you make are **greatly appreciated**.
-
-If you have a suggestion that would make this better, please fork the repo and create a pull request. You can also simply open an issue with the tag "enhancement".
-Don't forget to give the project a star! Thanks again!
-
-1. Fork the Project
-2. Create your Feature Branch (`git checkout -b feature/AmazingFeature`)
-3. Commit your Changes (`git commit -m 'Add some AmazingFeature'`)
-4. Push to the Branch (`git push origin feature/AmazingFeature`)
-5. Open a Pull Request
-
-<p align="right">(<a href="#top">back to top</a>)</p>
-
+### Training
+### Detection and evaluation
 
 
 <!-- LICENSE -->
@@ -180,15 +189,6 @@ Project Link: [https://github.com/your_username/repo_name](https://github.com/yo
 ## Acknowledgments
 
 Use this space to list resources you find helpful and would like to give credit to. I've included a few of my favorites to kick things off!
-
-* [Choose an Open Source License](https://choosealicense.com)
-* [GitHub Emoji Cheat Sheet](https://www.webpagefx.com/tools/emoji-cheat-sheet)
-* [Malven's Flexbox Cheatsheet](https://flexbox.malven.co/)
-* [Malven's Grid Cheatsheet](https://grid.malven.co/)
-* [Img Shields](https://shields.io)
-* [GitHub Pages](https://pages.github.com)
-* [Font Awesome](https://fontawesome.com)
-* [React Icons](https://react-icons.github.io/react-icons/search)
 
 <p align="right">(<a href="#top">back to top</a>)</p>
 
