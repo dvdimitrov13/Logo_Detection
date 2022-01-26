@@ -102,7 +102,7 @@ After applying additional preprocessing steps descibed in the following section,
 
  <div align="center">
     <a href="https://roboflow.com/?ref=ultralytics">
-        <img src="https://github.com/dvdimitrov13/Logo_Detection/blob/master/images/descriptive_stats.png" width="35%"/>
+        <img src="https://github.com/dvdimitrov13/Logo_Detection/blob/master/images/descriptive_stats.png" />
     </a>
 </div>
 
