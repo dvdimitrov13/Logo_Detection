@@ -1,5 +1,5 @@
-train: /home/labuser/yolo/formatted_data/yolo1000/train/images
-val: /home/labuser/yolo/formatted_data/yolo1000/valid/images
+train: ../formatted_data/yolo1000/train/images
+val: ../formatted_data/yolo1000/valid/images
 
 nc: 15
 names: ['Adidas', 'Apple Inc-', 'Chanel', 'Coca-Cola', 'Emirates', 'Hard Rock Cafe', 'Mercedes-Benz', 'NFL', 'Nike', 'Pepsi', 'Puma', 'Starbucks', 'The North Face', 'Toyota', 'Under Armour']
