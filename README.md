@@ -205,7 +205,7 @@ Afterwards, you cd in yolov5/ and run python detect.py. In the example below, we
 ```
 cd yolov5
 python detect.py --weight ../runs/train/yolo1000_x/weights/best.pt --source ../formatted_data/yolo1000/test/images --agnostic-nms --augment --project ../runs/detect --name output_{model_name} --save-txt --save-conf
-										yolo1000_s 		(yolov5s - v1)
+										yolo1000_s 	(yolov5s - v1)
 										yolo1000_s_cust (yolov5s - v2)
 										yolo_full_l 	(yolov5l - baseline)
 									
@@ -240,7 +240,9 @@ Distributed under the MIT License. See `LICENSE.txt` for more information.
 ## Contact
 
 Dimitar Dimitrov 
+	<br>
 Email - dvdimitrov13@gmail.com
+	<br>
 LinkedIn - https://www.linkedin.com/in/dimitarvalentindimitrov/
 
 <p align="right">(<a href="#top">back to top</a>)</p>
