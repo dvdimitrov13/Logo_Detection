@@ -2,6 +2,7 @@
 
 [![MIT License][license-shield]][license-url]
 [![LinkedIn][linkedin-shield]][linkedin-url]
+[![Colab][Colab-shield]][colab-url]
 
 
 <!-- PROJECT LOGO -->
