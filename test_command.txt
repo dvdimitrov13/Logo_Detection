@@ -1,1 +1,1 @@
-python detect.py --weights ../runs/train/{model_name}/weights/best.pt --source ../formatted_data/{data_name}/valid/images --conf-thres 0.10 --iou-thres 0.45 --agnostic-nms --augment --project ../runs/detect --name output_{model_name} --save-txt --save-conf
+python detect.py --weights ../runs/train/{model_name}/weights/best.pt --source ../formatted_data/{data_name}/valid/images  --agnostic-nms --augment --project ../runs/detect --name output_{model_name} --save-txt --save-conf
