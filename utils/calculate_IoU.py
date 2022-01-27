@@ -26,6 +26,12 @@ def parse_opt():
         help="Confidence treshold for the predicted bounding boxes",
     )
     parser.add_argument(
+        "--set",
+        type=str,
+        default="valid",
+        help="Which data are we evaluating: valid/test?",
+    )
+    parser.add_argument(
         "--logos",
         nargs="+",
         default=[
@@ -46,7 +52,7 @@ def parse_opt():
             "Under Armour",
         ],
         help="""input the logos that were part of your training, choose from:
-            'Adidas' 'Apple Inc.' 'Chanel' 'Coca-Cola' 'Emirates' 'Hard Rock Cafe' 'Intimissimi' 'Mercedes-Benz' 'NFL' 'Nike' 'Pepsi' 'Puma' 'Ralph Lauren Corporation' 'Starbucks' 'The North Face' 'Toyota' 'Under Armour']
+            'Adidas' 'Apple Inc.' 'Chanel' 'Coca-Cola' 'Emirates' 'Hard Rock Cafe' 'Intimissimi' 'Mercedes-Benz' 'NFL' 'Nike' 'Pepsi' 'Puma' 'Ralph Lauren Corporation' 'Starbucks' 'The North Face' 'Toyota' 'Under Armour'
             """,
     )
 
@@ -61,7 +67,7 @@ def calculate_IoU(opt):
         )
     )
     true_labels_files = os.listdir(
-        os.path.join(os.getcwd(), "formatted_data", opt.data_name, "valid", "labels")
+        os.path.join(os.getcwd(), "formatted_data", opt.data_name, opt.set, "labels")
     )
 
     # Create dfs to store labels
@@ -83,7 +89,7 @@ def calculate_IoU(opt):
     # Fill in the true_df
     for file in true_labels_files:
         t_temp_df = pd.read_csv(
-            "formatted_data/{}/valid/labels/{}".format(opt.data_name, file),
+            "formatted_data/{}/{}/labels/{}".format(opt.data_name, opt.set, file),
             names=["label", "x_t", "y_t", "w_t", "h_t"],
             delim_whitespace=True,
             index_col=False,
@@ -183,4 +189,3 @@ def calculate_IoU(opt):
 if __name__ == "__main__":
     opt = parse_opt()
     calculate_IoU(opt)
-
