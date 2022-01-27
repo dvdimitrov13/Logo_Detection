@@ -100,7 +100,7 @@ The raw dataset provided 17 brand logos. After initial inspection, Intimissimi a
 
 In order to convert the dataset to YOLOv5 PyTorch TXT format, I used  [Roboflow](https://roboflow.com/). As far as preprocessing, I applied auto-orient and image resize (to the correct model size 640x640). Since YOLOv5 already applies data augmention in its training script which can be finutened through hyperparameters, no data augmentation steps were taken in Roboflow.
 
-After applying additional preprocessing steps described in the following section, the final dataset can be found under the name [yolo1000](https://github.com/dvdimitrov13/Logo_Detection/tree/master/formatted_data/yolo1000), which has the follwoing statistics:
+After applying additional preprocessing steps described in the following section, the final dataset can be found under the name [yolo1000](https://github.com/dvdimitrov13/Logo_Detection/tree/master/formatted_data/yolo1000), which has the following statistics:
 
  <div align="center">
     <a href="https://roboflow.com/?ref=ultralytics">
