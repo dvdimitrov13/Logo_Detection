@@ -109,7 +109,7 @@ After applying additional preprocessing steps described in the following section
 </div>
 
 #### 2. Training 
-For model training, transfer learning was used. Instead of starting from a randomized set of weights, I used the pretrined checkpoints provided by YOLOv5 repo, which are already trained on the COCO dataset.
+For model training, transfer learning was used. Instead of starting from a randomized set of weights, I used the pretrained checkpoints provided by YOLOv5 repo, which are already trained on the COCO dataset.
 
 To establish baseline performance, I first trained a model using an unaltered version of the full dataset (around 38K images) using YOLOv5l. Following that, I took the following steps to improve performance:
 * Improved label consistency by adding missing bounding boxes -- original data had only one box per image
