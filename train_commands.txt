@@ -1,1 +1,1 @@
-python train.py --img 640 --batch {batch_size} --epochs {num_epochs} --data {Path/to/CWD}/yolo/formatted_data/{data_name}/{data_name}.yaml --weights {model_weights} --cache //remove if ram is too low --name {model_name} --project {Path/to/CWD}/yolo/runs/train --hyp {hyp_file_name}.yaml
+python train.py --img 640 --batch {batch_size} --epochs {num_epochs} --data ../formatted_data/{data_name}/{data_name}.yaml --weights {model_weights} --cache //remove if ram is too low --name {model_name} --project ../runs/train --hyp {hyp_file_name}.yaml
