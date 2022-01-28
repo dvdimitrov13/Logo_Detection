@@ -140,7 +140,7 @@ For model evaluation the main metric used was mAP. Additionally, the IoU (Inters
 | Model| mAP<sup>val<br>0.5 |mAP<sup>val<br>0.5:0.95  
 | :-----: | :-: | :-: 
 | YOLOv5l - baseline | 0.870 | 0.701
-| YOLOv5s - v1 | 0.868 | 0.693 
+| YOLOv5s - v1 | 0.866 | 0.699 
 | YOLOv5s - v2 | 0.873 | 0.711
 | YOLOv5x - final | 0.881 | 0.722
 
