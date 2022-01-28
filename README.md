@@ -167,7 +167,7 @@ Here are the final results for **YOLOv5x - final**:
 
 ## User manual
 <div align="center">
-   <a href="https://colab.research.google.com/drive/1vd0Zssf0JUpiS2eUN1bOiJnEs6mGxkRc#offline=true&sandboxMode=true"><img src="https://colab.research.google.com/assets/colab-badge.svg" alt="Open In Colab">
+   <a href="https://colab.research.google.com/drive/1vd0Zssf0JUpiS2eUN1bOiJnEs6mGxkRc#offline=true&sandboxMode=true"><img src="https://colab.research.google.com/assets/colab-badge.svg" height=30 alt="Open In Colab">
    </a>
 </div>
 You can find a full implementation of the user manual below, including reproduction of evaluation and training results, in the Colab notebook above!
