@@ -1,18 +1,23 @@
 <!-- PROJECT SHIELDS -->
+<div align="center">
+   	<a href="https://colab.research.google.com/github/ultralytics/yolov5/blob/master/tutorial.ipynb"><img src="https://colab.research.google.com/assets/colab-badge.svg" alt="Open In Colab" height=28>
+   	</a>
+	<a href =https://github.com/dvdimitrov13/Logo_Detection/blob/master/LICENSE><img src =https://img.shields.io/github/license/othneildrew/Best-README-Template.svg?style=for-the-badge>
+	</a>
+	<a href =https://www.linkedin.com/in/dimitarvalentindimitrov/><img src =https://img.shields.io/badge/-LinkedIn-black.svg?style=for-the-badge&logo=linkedin&colorB=555>
+	</a>
+</div>
 
-[![MIT License][license-shield]][license-url]
-[![LinkedIn][linkedin-shield]][linkedin-url]
-[![Colab][Colab-shield]][colab-url]
 
 
 <!-- PROJECT LOGO -->
 <br />
 <div align="center">
   <a href="https://github.com/dvdimitrov13/Logo_Detection">
-    <img src="images/logo.png" alt="Logo" width="200" height="200">
+    <img src="images/Logo2.png" alt="Logo" height="200">
   </a>
 
-  <h1 align="center">Logo Detection</h1>
+  <h1 align="center"></h1>
 
   <p align="center">
    Knowing who is using your product and in what context is power! By using Computer Vision we can acquire organic customer insights by detecting the right images on social media. This repository showcases models trained to detect 15 distinct brand logos in pictures/videos online!
@@ -255,15 +260,3 @@ LinkedIn - https://www.linkedin.com/in/dimitarvalentindimitrov/
 This project would not have been possible without the support of my Computer Vision professors at Bocconi University who provided the two key ingedients -- guidance and data!
 
 <p align="right">(<a href="#top">back to top</a>)</p>
-
-
-
-<!-- MARKDOWN LINKS & IMAGES -->
-<!-- https://www.markdownguide.org/basic-syntax/#reference-style-links -->
-[license-shield]: https://img.shields.io/github/license/othneildrew/Best-README-Template.svg?style=for-the-badge
-[license-url]: https://github.com/dvdimitrov13/Logo_Detection/blob/master/LICENSE
-[linkedin-shield]: https://img.shields.io/badge/-LinkedIn-black.svg?style=for-the-badge&logo=linkedin&colorB=555
-[linkedin-url]: https://www.linkedin.com/in/dimitarvalentindimitrov/
-[colab-shield]: https://colab.research.google.com/assets/colab-badge.svg
-[colab-url]: https://colab.research.google.com/github/ultralytics/yolov5/blob/master/tutorial.ipynb
-[product-screenshot]: images/screenshot.png
