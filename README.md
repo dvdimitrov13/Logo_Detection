@@ -1,6 +1,6 @@
 <!-- PROJECT SHIELDS -->
 <div align="center">
-   	<a href="https://colab.research.google.com/drive/1vd0Zssf0JUpiS2eUN1bOiJnEs6mGxkRc?authuser=0#scrollTo=OHM1vBNBlOJ3"><img src="https://colab.research.google.com/assets/colab-badge.svg" alt="Open In Colab" height=28>
+   	<a href="https://colab.research.google.com/drive/1vd0Zssf0JUpiS2eUN1bOiJnEs6mGxkRc#offline=true&sandboxMode=true"><img src="https://colab.research.google.com/assets/colab-badge.svg" alt="Open In Colab" height=28>
    	</a>
 	<a href =https://github.com/dvdimitrov13/Logo_Detection/blob/master/LICENSE><img src =https://img.shields.io/github/license/othneildrew/Best-README-Template.svg?style=for-the-badge>
 	</a>
@@ -167,7 +167,7 @@ Here are the final results for **YOLOv5x - final**:
 
 ## User manual
 <div align="center">
-   <a href="https://colab.research.google.com/drive/1vd0Zssf0JUpiS2eUN1bOiJnEs6mGxkRc?authuser=0#scrollTo=OHM1vBNBlOJ3"><img src="https://colab.research.google.com/assets/colab-badge.svg" alt="Open In Colab">
+   <a href="https://colab.research.google.com/drive/1vd0Zssf0JUpiS2eUN1bOiJnEs6mGxkRc#offline=true&sandboxMode=true"><img src="https://colab.research.google.com/assets/colab-badge.svg" alt="Open In Colab">
    </a>
 </div>
 You can find a full implementation of the user manual below, including reproduction of evaluation and training results, in the Colab notebook above!
