@@ -56,7 +56,7 @@
 <!-- ABOUT THE PROJECT -->
 ## About the project
 
-This project was developed as part of my Data Science degree coursework, with the goal of maximizing accuracy. After a brief experimentation with ResNet50, [YOLOv5](https://github.com/ultralytics/yolov5/blob/master/README.md) was identified as the best performing model for the job. Additionally, thanks to its state of the art architecture, I was able to develop two distinct models that one can choose to implement:
+This project was developed as part of my Data Science degree coursework, with the goal of maximizing accuracy. After a brief experimentation with R-CNN, [YOLOv5](https://github.com/ultralytics/yolov5/blob/master/README.md) was identified as the best performing model for the job. Additionally, thanks to its state of the art architecture, I was able to develop two distinct models that one can choose to implement:
 * yolo1000_s_cust - based on YOLOv5_s architecture 
 * yolo1000_x - based on YOLOv5_x architecture
 
